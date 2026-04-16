@@ -33,7 +33,6 @@ st.markdown("""
     background-position: center;
     background-attachment: fixed;
 }
-
 /* overlay lighter (background clearer) */
 [data-testid="stAppViewContainer"]::before{
     content:"";
@@ -41,9 +40,7 @@ st.markdown("""
     inset:0;
     background:rgba(7,18,30,0.25);
 }
-
 .main *{position:relative; z-index:1;}
-
 .hero-box,.glass-box,.feature-box{
     background: rgba(15,35,55,0.72);
     backdrop-filter: blur(14px);
@@ -53,49 +50,41 @@ st.markdown("""
     margin-bottom:20px;
     box-shadow:0 8px 30px rgba(0,0,0,0.25);
 }
-
 .project-title{
     text-align:center;
     font-size:60px;
     font-weight:900;
     color:white;
 }
-
 .subtitle{
     text-align:center;
     color:#f8d66d;
     font-size:22px;
     font-weight:700;
 }
-
 /* ================= SIDEBAR ORANGE ================= */
 section[data-testid="stSidebar"]{
     background: linear-gradient(180deg, #ff8c00, #ffb347);
 }
-
 section[data-testid="stSidebar"] *{
     color:white !important;
     font-weight:600;
 }
-
 /* dropdown */
 div[data-baseweb="select"] > div{
     background-color:#ff8c00 !important;
     border-radius:12px !important;
     color:white !important;
 }
-
 /* Styling for Streamlit alerts/messages */
 div[data-testid="stAlert"] {
     background-color: #333333 !important; /* Dark gray background */
     color: #ff8c00 !important; /* Orange text */
     border-left: 6px solid #ff8c00 !important; /* Orange border */
 }
-
 div[data-testid="stAlert"] div[data-testid="stMarkdownContainer"] p {
     color: #ff8c00 !important;
 }
-
 /* Styling for titles outside of specific boxes */
 .main h2, .main h3, .main h4 {
     background-color: rgba(255, 140, 0, 0.15); /* Light orange background */
@@ -105,7 +94,6 @@ div[data-testid="stAlert"] div[data-testid="stMarkdownContainer"] p {
     margin-bottom: 20px;
     margin-top: 20px;
 }
-
 </style>
 """, unsafe_allow_html=True)
 
@@ -113,7 +101,15 @@ div[data-testid="stAlert"] div[data-testid="stMarkdownContainer"] p {
 @st.cache_resource
 def load_model():
     model_path = 'best.pt'
-    return YOLO(model_path) if os.path.exists(model_path) else None
+    if os.path.exists(model_path):
+        try:
+            return YOLO(model_path)
+        except Exception as e:
+            st.error(f"Error loading model from {model_path}: {e}. This might be due to incorrect Git LFS setup. Please ensure large files like `best.pt` are tracked with Git LFS and properly uploaded.")
+            return None
+    else:
+        st.error(f"Model file not found at {model_path}. Please ensure `best.pt` is in the correct directory and properly uploaded, especially if using Git LFS.")
+        return None
 
 model = load_model()
 
