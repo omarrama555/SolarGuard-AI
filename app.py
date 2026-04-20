@@ -313,13 +313,13 @@ elif not st.session_state.entered_site:
     c2.metric("Accuracy", "97%")
     c3.metric("Critical Alerts", "12")
     c4.metric("Energy Saved", "32%")
-    if st.button("🚀 Enter Dashboard", use_container_width=True):
+    if st.button("Enter Dashboard", use_container_width=True):
         st.session_state.entered_site = True
         st.rerun()
 
 else:
     # --- EXIT BUTTON IN SIDEBAR ---
-    if st.sidebar.button("🚪 Exit System", use_container_width=True):
+    if st.sidebar.button("Exit System", use_container_width=True):
         st.session_state.logged_in = False
         st.session_state.entered_site = False
         st.rerun()
@@ -349,15 +349,15 @@ else:
 
     # ================= 1. SMART DASHBOARD OVERVIEW =================
     if menu == "Smart Dashboard Overview":
-        st.markdown("## 📊 Global Operations Dashboard")
+        st.markdown("## Global Operations Dashboard")
         st.markdown("**Enterprise-Grade Intelligence & Performance Metrics**")
         
         create_business_dashboard()
         
-        st.markdown("### 📈 Predictive Performance Analytics")
+        st.markdown("### Predictive Performance Analytics")
         create_advanced_charts()
         
-        st.markdown("### 🎯 Strategic KPIs")
+        st.markdown("### Strategic KPIs")
         col1, col2, col3 = st.columns(3)
         with col1:
             st.info("**Global ROI**: 18.5% Annualized Yield")
@@ -368,13 +368,13 @@ else:
 
     # ================= 2. ADVANCED AI MULTI PANEL ANALYSIS =================
     elif menu == "Advanced AI Multi Panel Analysis":
-        st.markdown("## 🤖 Advanced AI Multi Panel Analysis")
+        st.markdown("## Advanced AI Multi Panel Analysis")
         st.markdown("**Intelligent Multi-Spectrum Defect Detection Engine**")
         
         files = st.file_uploader("Upload Batch Images (Up to 10)", type=['jpg', 'png', 'jpeg'], accept_multiple_files=True)
         
         if files:
-            st.markdown("### 📊 Batch Diagnostic Intelligence")
+            st.markdown("### Batch Diagnostic Intelligence")
             
             col1, col2, col3, col4, col5 = st.columns(5)
             with col1:
@@ -425,46 +425,46 @@ else:
                     "Risk Profile": "Low" if score > 85 else "Elevated" if score > 70 else "Critical"
                 })
             
-            st.markdown("### 🎯 Granular Asset Analysis")
+            st.markdown("### Granular Asset Analysis")
             df = pd.DataFrame(results_list).sort_values(by="Health Score %", ascending=False)
             st.dataframe(df, use_container_width=True)
             
             # Communication Channels
-            st.markdown("### 📡 Enterprise Communication Gateway")
+            st.markdown("### Enterprise Communication Gateway")
             comm_col1, comm_col2 = st.columns(2)
             with comm_col1:
                 whatsapp_num = st.text_input("Recipient WhatsApp Number", placeholder="+201080520164")
-                if st.button("📲 Dispatch WhatsApp Alert"):
+                if st.button(" Dispatch WhatsApp Alert"):
                     if whatsapp_num:
-                        st.success(f"✅ Intelligence report dispatched to {whatsapp_num}")
+                        st.success(f" Intelligence report dispatched to {whatsapp_num}")
                     else:
                         st.error("Please enter a valid destination number")
             
             with comm_col2:
                 email_dest = st.text_input("Recipient Email Address", placeholder="omarramadan88888888g@gmail.com")
-                if st.button("📧 Dispatch Executive Email"):
+                if st.button("Dispatch Executive Email"):
                     if email_dest:
-                        st.success(f"✅ Full diagnostic report transmitted to {email_dest}")
+                        st.success(f" Full diagnostic report transmitted to {email_dest}")
                     else:
                         st.error("Please enter a valid destination email")
 
             # New Features
-            st.markdown("### 🚀 Intelligent Extensions")
+            st.markdown("###  Intelligent Extensions")
             ext_col1, ext_col2 = st.columns(2)
             with ext_col1:
                 st.markdown("#### 🔍 Micro-Defect Zoom")
                 st.info("AI-powered 4x zoom on detected anomalies for structural verification.")
                 if st.button("Activate Neural Zoom"):
-                    st.success("✅ Neural Zoom Analysis completed on detected anomalies.")
+                    st.success(" Neural Zoom Analysis completed on detected anomalies.")
             with ext_col2:
-                st.markdown("#### 📜 Warranty Compliance Check")
+                st.markdown("####  Warranty Compliance Check")
                 st.info("Automated verification of detected defects against manufacturer warranty terms.")
                 if st.button("Verify Warranty Status"):
-                    st.success("✅ 95% of assets are within warranty coverage for detected issues.")
+                    st.success(" 95% of assets are within warranty coverage for detected issues.")
 
       # ================= 3. REAL-TIME VIDEO STREAM ANALYSIS =================
     elif menu == "Real-time Video Stream Analysis":
-        st.markdown("## 🎬 Real-time Video Intelligence Analysis")
+        st.markdown("## Real-time Video Intelligence Analysis")
         st.markdown("**Full Frame-by-Frame Deep Business Intelligence Processing**")
         
         uploaded_video = st.file_uploader("Upload Surveillance Video", type=['mp4', 'avi', 'mov'])
@@ -474,7 +474,7 @@ else:
             with open(tfile, "wb") as f:
                 f.write(uploaded_video.getbuffer())
             
-            st.info("🎥 Initiating Full Video Analysis (Second-by-Second)...")
+            st.info("Initiating Full Video Analysis ")
             cap = cv2.VideoCapture(tfile)
             total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
             fps = cap.get(cv2.CAP_PROP_FPS)
@@ -549,33 +549,33 @@ else:
             
             cap.release()
             os.remove(tfile)
-            st.success(f"✅ Full Video Analysis Complete. Total Anomalies Cataloged: {anomalies_found} | Total Changes: {total_changes}")
+            st.success(f" Full Video Analysis Complete. Total Anomalies Cataloged: {anomalies_found} | Total Changes: {total_changes}")
             
             # --- ADDED 5 REAL-WORLD BUSINESS FEATURES ---
-            st.markdown("### 💼 Enterprise Video Intelligence Extensions")
+            st.markdown("###  Enterprise Video Intelligence Extensions")
             
             feat_col1, feat_col2 = st.columns(2)
             with feat_col1:
-                st.markdown("#### 1. 📉 Temporal Defect Progression")
+                st.markdown("#### 1. Temporal Defect Progression")
                 st.info("Analyzes how defects (like cracks) expand or change under varying light/shadow conditions in the video.")
                 if st.button("Generate Progression Report"):
-                    st.success("✅ Analysis: Defect size stable. No rapid expansion detected.")
+                    st.success(" Analysis: Defect size stable. No rapid expansion detected.")
                 
-                st.markdown("#### 2. ⚡ Dynamic Power Loss Estimator")
+                st.markdown("#### 2. Dynamic Power Loss Estimator")
                 st.info("Calculates exact energy loss (kWh) for each second of the video based on obstruction percentage.")
                 if st.button("Calculate Dynamic Loss"):
                     st.metric("Total Loss Estimated", "0.45 kWh", "Critical")
 
-                st.markdown("#### 3. 🛡️ Asset Integrity Certification")
+                st.markdown("#### 3. Asset Integrity Certification")
                 st.info("Generates a signed digital certificate verifying the visual health of the assets during the video period.")
                 if st.button("Issue Health Certificate"):
-                    st.success("📜 Certificate SG-2026-X1 generated and ready for download.")
+                    st.success(" Certificate SG-2026-X1 generated and ready for download.")
 
             with feat_col2:
-                st.markdown("#### 4. 🌡️ Visual Thermal Anomaly Mapping")
+                st.markdown("#### 4. Visual Thermal Anomaly Mapping")
                 st.info("Simulates thermal hotspots by analyzing pixel intensity changes, identifying potential electrical failures.")
                 if st.button("Run Thermal Simulation"):
-                    st.warning("⚠️ 2 potential hotspots identified in Frame 145 & 210.")
+                    st.warning(" 2 potential hotspots identified in Frame 145 & 210.")
 
                 st.markdown("#### 5. 🤖 Automated Maintenance Dispatch")
                 st.info("Directly connects to the ERP system to schedule a technician if health drops below 70% in any frame.")
@@ -585,11 +585,11 @@ else:
 
     # ================= 4. LIVE CAMERA FEED ANALYSIS =================
     elif menu == "Live Camera Feed Analysis":
-        st.markdown("## 🎥 Live Intelligent Surveillance")
+        st.markdown("## Live Intelligent Surveillance")
         st.markdown("**Real-time Continuous Asset Monitoring**")
         
         if WEBRTC_AVAILABLE:
-            st.info("📡 Establishing secure uplink to camera feed...")
+            st.info(" Establishing secure uplink to camera feed...")
             # Enhanced WebRTC configuration could go here
             webrtc_streamer(
                 key="live_camera",
@@ -597,23 +597,23 @@ else:
                 rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
             )
             
-            st.markdown("### 🛠️ Live Stream Enhancements")
+            st.markdown("###  Live Stream Enhancements")
             ls_col1, ls_col2 = st.columns(2)
             with ls_col1:
-                st.markdown("#### 🛰️ Low-Latency Edge Processing")
+                st.markdown("#### Low-Latency Edge Processing")
                 st.info("Reduces lag by processing frames at the network edge.")
                 st.toggle("Enable Edge Acceleration", value=True)
             with ls_col2:
-                st.markdown("#### 🚨 Smart Intrusion Detection")
+                st.markdown("#### Smart Intrusion Detection")
                 st.info("Detects unauthorized personnel or wildlife near solar assets.")
                 if st.button("Activate Security Perimeter"):
-                    st.success("✅ Virtual security perimeter active.")
+                    st.success(" Virtual security perimeter active.")
         else:
             st.error("Live Camera Interface Unavailable. Please ensure 'streamlit-webrtc' is correctly configured in your environment.")
 
     # ================= 5. SELF-LEARNING & MODEL RETRAINING =================
     elif menu == "Self-Learning & Model Retraining":
-        st.markdown("## 🧠 Neural Network Evolution")
+        st.markdown("## Neural Network Evolution")
         st.markdown("**Continuous Learning & Model Optimization Gateway**")
         
         st.markdown("### 🔄 Active Feedback Loop")
@@ -622,9 +622,9 @@ else:
             st.image(uploaded_image, caption="Diagnostic Edge Case")
             correct_label = st.selectbox("Expert Verification Label", ["Optimal", "Dusty", "Structural Crack", "Obstruction", "Thermal Anomaly"])
             if st.button("Commit to Neural Training Set"):
-                st.success(f"✅ Asset data committed. Model will be updated in the next cycle.")
+                st.success(f" Asset data committed. Model will be updated in the next cycle.")
         
-        st.markdown("### 📈 Neural Performance Metrics")
+        st.markdown("### Neural Performance Metrics")
         perf_data = pd.DataFrame({
             "Metric": ["Accuracy", "Precision", "Recall", "F1-Score"],
             "Current Model": ["98.4%", "97.8%", "98.1%", "97.9%"],
@@ -637,29 +637,29 @@ else:
   
     # ================= NEW & IMPROVED: MAINTENANCE LOCATION MAPPING =================
     elif menu == "Maintenance Location Mapping":
-        st.markdown("## 📍 Maintenance Location Intelligence")
+        st.markdown("##  Maintenance Location Intelligence")
         st.markdown('<div class="glass-box">', unsafe_allow_html=True)
         
-        st.subheader("🛠️ Fleet Dispatch & Location Manager")
+        st.subheader(" Fleet Dispatch & Location Manager")
         
         col1, col2 = st.columns([1, 1])
         
         with col1:
-            st.markdown("### 🗺️ Target Selection")
+            st.markdown("### Target Selection")
             country = st.selectbox("Select Country", ["Egypt (مصر)"], disabled=True)
             gov = st.selectbox("Select Governorate (المحافظة)", list(EGYPT_DATA.keys()))
             center = st.selectbox("Select Center/District (المركز/القسم)", EGYPT_DATA[gov])
             address = st.text_input("Street Address / Landmark (العنوان أو علامة مميزة)")
             
             st.markdown("---")
-            st.markdown("### 📋 Maintenance Details")
+            st.markdown("### Maintenance Details")
             m_type = st.selectbox("Maintenance Type", ["Routine Cleaning", "Inverter Repair", "Panel Replacement", "Structural Reinforcement", "Emergency Diagnostic"])
             priority = st.select_slider("Priority Level", options=["Low", "Medium", "High", "Critical"])
             scheduled_date = st.date_input("Scheduled Visit Date", datetime.date.today() + datetime.timedelta(days=1))
             technician = st.selectbox("Assign Senior Technician", ["Eng. Ahmed Ali", "Eng. Sarah Hassan", "Eng. Mohamed Ibrahim", "Eng. Mahmoud Zayed"])
 
         with col2:
-            st.markdown("### 🌍 Real-time Intelligence Map")
+            st.markdown("### Real-time Map")
             # Get coordinates for the selected governorate
             lat, lon = GOV_COORDS.get(gov, (26.8206, 30.8025))
             
@@ -677,19 +677,19 @@ else:
             
             st.map(map_data, zoom=11)
             
-            st.markdown("### 📡 Local Intelligence Status")
-            st.success(f"📍 GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
+            st.markdown("###  Local Intelligence Status")
+            st.success(f" GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
             st.info(f"👨‍🔧 3 Technicians active in {center} area.")
             st.warning(f"🌡️ Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
 
         st.markdown("---")
-        if st.button("🚀 GENERATE WORK ORDER & DISPATCH", use_container_width=True):
+        if st.button(" GENERATE WORK ORDER & DISPATCH", use_container_width=True):
             with st.spinner("Synchronizing with Enterprise ERP..."):
                 time.sleep(1.5)
                 st.balloons()
                 st.markdown(f"""
                 <div class="location-card">
-                    <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
+                    <h3 style='color:#FF8C00;'> Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
                     <p><b>Target:</b> {address}, {center}, {gov}</p>
                     <p><b>Task:</b> {m_type} (Priority: {priority})</p>
                     <p><b>Assigned To:</b> {technician}</p>
@@ -699,24 +699,24 @@ else:
                 """, unsafe_allow_html=True)
                 
                 # Mock download button for work order
-                st.download_button("📥 Download Official Work Order (PDF)", data=b"Work Order Content", file_name=f"WorkOrder_{gov}_{center}.pdf")
+                st.download_button(" Download Official Work Order (PDF)", data=b"Work Order Content", file_name=f"WorkOrder_{gov}_{center}.pdf")
 
         st.markdown('</div>', unsafe_allow_html=True)
  
 
     # ================= 6. HISTORICAL SYSTEM HEALTH LOGS =================
     elif menu == "Historical System Health Logs":
-        st.markdown("## 📋 Enterprise Asset Ledger")
+        st.markdown("## Enterprise Asset Ledger")
         st.markdown("**Immutable Performance History & Audit Logs**")
         
-        st.markdown("### 📊 Longitudinal Health Analysis")
+        st.markdown("### Longitudinal Health Analysis")
         data = generate_mock_data(60)
         df = pd.DataFrame(data)
         fig = px.line(df, x='date', y='panel_health', title='Global Fleet Health (60-Day Horizon)', color_discrete_sequence=['#FF8C00'])
         fig.update_layout(template='plotly_dark', paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
         st.plotly_chart(fig, use_container_width=True)
         
-        st.markdown("### 📝 Audit Trail")
+        st.markdown("### Audit Trail")
         maintenance_log = pd.DataFrame({
             "Timestamp": ["2024-04-10", "2024-04-05", "2024-03-28", "2024-03-15"],
             "Operation": ["Neural Cleaning", "Structural Repair", "Fleet Inspection", "Neural Cleaning"],
@@ -728,7 +728,7 @@ else:
 
     # ================= 7. ESG & ENVIRONMENTAL IMPACT =================
     elif menu == "ESG & Environmental Impact":
-        st.markdown("## 🌍 ESG & Sustainability Intelligence")
+        st.markdown("## ESG & Sustainability Intelligence")
         st.markdown("**Quantifying Environmental Stewardship & Carbon Credits**")
         
         col1, col2, col3 = st.columns(3)
@@ -739,7 +739,7 @@ else:
         with col3:
             st.metric("Fossil Fuel Avoidance", "1,225 Barrels", "+12.5%")
         
-        st.markdown("### 📊 Sustainability Trajectory")
+        st.markdown("###  Sustainability Trajectory")
         env_data = pd.DataFrame({
             "Month": ["Jan", "Feb", "Mar", "Apr"],
             "CO₂ Avoided (tons)": [580, 620, 650, 600],
@@ -751,7 +751,7 @@ else:
 
     # ================= 10. AUTOMATED EXECUTIVE REPORTS =================
     elif menu == "Automated Executive Reports":
-        st.markdown("## 📊 Automated Executive Intelligence")
+        st.markdown("##  Automated Executive Intelligence")
         st.markdown("**Strategic Performance Reports Generated by AI**")
         
         st.markdown("### 📑 Strategic Summary")
@@ -763,7 +763,7 @@ else:
         with summary_col3:
             st.metric("Resolution Efficiency", "100%", "✅ Optimal")
         
-        st.markdown("### 📈 Enterprise Scorecard")
+        st.markdown("###  Enterprise Scorecard")
         scorecard = pd.DataFrame({
             "Strategic KPI": ["Energy Yield", "System Efficiency", "Asset Integrity", "Network Uptime", "Stakeholder Satisfaction"],
             "Benchmark": ["1,400 kWh", "95%", "95%", "99.5%", "95%"],
@@ -772,12 +772,12 @@ else:
         })
         st.table(scorecard)
         
-        st.markdown("### 📥 Report Distribution")
+        st.markdown("###  Report Distribution")
         col1, col2, col3 = st.columns(3)
         with col1:
-            st.download_button("📥 Export PDF Executive Brief", data=b"PDF", file_name="executive_report.pdf")
+            st.download_button(" Export PDF Executive Brief", data=b"PDF", file_name="executive_report.pdf")
         with col2:
-            st.download_button("📊 Export Excel Data Ledger", data=b"Excel", file_name="executive_report.xlsx")
+            st.download_button(" Export Excel Data Ledger", data=b"Excel", file_name="executive_report.xlsx")
         with col3:
             if st.button("📧 Dispatch to Stakeholders"):
                 st.success(f"✅ Intelligence report transmitted to registered executive board.")
