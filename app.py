@@ -634,7 +634,9 @@ else:
 
     
     # ================= NEW: MAINTENANCE LOCATION MAPPING =================
-        elif menu == "Maintenance Location Mapping":
+  
+    # ================= NEW & IMPROVED: MAINTENANCE LOCATION MAPPING =================
+    elif menu == "Maintenance Location Mapping":
         st.markdown("## 📍 Maintenance Location Intelligence")
         st.markdown('<div class="glass-box">', unsafe_allow_html=True)
         
@@ -700,7 +702,7 @@ else:
                 st.download_button("📥 Download Official Work Order (PDF)", data=b"Work Order Content", file_name=f"WorkOrder_{gov}_{center}.pdf")
 
         st.markdown('</div>', unsafe_allow_html=True)
-
+ 
 
     # ================= 6. HISTORICAL SYSTEM HEALTH LOGS =================
     elif menu == "Historical System Health Logs":
