@@ -160,6 +160,39 @@ EGYPT_DATA = {
     "جنوب سيناء": ["شرم الشيخ", "طور سيناء", "دهب", "نويبع", "طابا"]
 }
 
+# Approximate Coordinates for Egypt Governorates for better mapping
+GOV_COORDS = {
+    "القاهرة": (30.0444, 31.2357),
+    "الجيزة": (30.0131, 31.2089),
+    "الإسكندرية": (31.2001, 29.9187),
+    "القليوبية": (30.4124, 31.1868),
+    "الدقهلية": (31.0409, 31.3785),
+    "الشرقية": (30.5877, 31.5020),
+    "المنوفية": (30.5972, 30.9876),
+    "الغربية": (30.7865, 31.0004),
+    "البحيرة": (31.0364, 30.4631),
+    "كفر الشيخ": (31.1107, 30.9388),
+    "دمياط": (31.4175, 31.8144),
+    "بورسعيد": (31.2653, 32.3019),
+    "الإسماعيلية": (30.5965, 32.2715),
+    "السويس": (29.9668, 32.5498),
+    "الفيوم": (29.3084, 30.8428),
+    "بني سويف": (29.0744, 31.0979),
+    "المنيا": (28.0871, 30.7618),
+    "أسيوط": (27.1783, 31.1859),
+    "سوهاج": (26.5591, 31.6957),
+    "قنا": (26.1551, 32.7160),
+    "الأقصر": (25.6872, 32.6396),
+    "أسوان": (24.0889, 32.8998),
+    "البحر الأحمر": (27.2579, 33.8116),
+    "الوادي الجديد": (25.4390, 30.5586),
+    "مطروح": (31.3543, 27.2373),
+    "شمال سيناء": (31.1321, 33.8033),
+    "جنوب سيناء": (28.5000, 34.0000)
+}
+
+
+
 
 # ================= MODEL =================
 @st.cache_resource
@@ -601,30 +634,71 @@ else:
 
     
     # ================= NEW: MAINTENANCE LOCATION MAPPING =================
-    elif menu == "Maintenance Location Mapping":
+        elif menu == "Maintenance Location Mapping":
         st.markdown("## 📍 Maintenance Location Intelligence")
         st.markdown('<div class="glass-box">', unsafe_allow_html=True)
         
-        st.subheader("Select Maintenance Target Location")
-        country = st.selectbox("Select Country", ["Egypt (مصر)"])
+        st.subheader("🛠️ Fleet Dispatch & Location Manager")
         
-        col1, col2 = st.columns(2)
+        col1, col2 = st.columns([1, 1])
+        
         with col1:
+            st.markdown("### 🗺️ Target Selection")
+            country = st.selectbox("Select Country", ["Egypt (مصر)"], disabled=True)
             gov = st.selectbox("Select Governorate (المحافظة)", list(EGYPT_DATA.keys()))
-        with col2:
             center = st.selectbox("Select Center/District (المركز/القسم)", EGYPT_DATA[gov])
+            address = st.text_input("Street Address / Landmark (العنوان أو علامة مميزة)")
             
-        village = st.text_input("Village or Detailed Address (القرية أو العنوان بالتفصيل)")
-        
-        if st.button("📍 Pin Location on Intelligence Map"):
-            st.success(f"Target locked: {village}, {center}, {gov}, {country}")
+            st.markdown("---")
+            st.markdown("### 📋 Maintenance Details")
+            m_type = st.selectbox("Maintenance Type", ["Routine Cleaning", "Inverter Repair", "Panel Replacement", "Structural Reinforcement", "Emergency Diagnostic"])
+            priority = st.select_slider("Priority Level", options=["Low", "Medium", "High", "Critical"])
+            scheduled_date = st.date_input("Scheduled Visit Date", datetime.date.today() + datetime.timedelta(days=1))
+            technician = st.selectbox("Assign Senior Technician", ["Eng. Ahmed Ali", "Eng. Sarah Hassan", "Eng. Mohamed Ibrahim", "Eng. Mahmoud Zayed"])
+
+        with col2:
+            st.markdown("### 🌍 Real-time Intelligence Map")
+            # Get coordinates for the selected governorate
+            lat, lon = GOV_COORDS.get(gov, (26.8206, 30.8025))
             
-            # Google Maps Simulation (Using Streamlit Map with random coords in Egypt for demo)
-            # In a real app, we'd geocode the address
-            map_data = pd.DataFrame({'lat': [26.8206], 'lon': [30.8025]}) # Center of Egypt
-            st.map(map_data)
-            st.info("💡 Real-time Google Maps integration active for this coordinate.")
-        
+            # Simulate random coordinates for the specific center/district
+            c_lat = lat + random.uniform(-0.05, 0.05)
+            c_lon = lon + random.uniform(-0.05, 0.05)
+            
+            # Create a dataframe for the map with multiple points (Target + Available Technicians)
+            map_data = pd.DataFrame({
+                'lat': [c_lat, c_lat + 0.02, c_lat - 0.02, c_lat + 0.01],
+                'lon': [c_lon, c_lon + 0.01, c_lon - 0.01, c_lon + 0.03],
+                'name': ['Target Site', 'Tech Unit 1', 'Tech Unit 2', 'Tech Unit 3'],
+                'color': ['#FF0000', '#00FF00', '#00FF00', '#00FF00']
+            })
+            
+            st.map(map_data, zoom=11)
+            
+            st.markdown("### 📡 Local Intelligence Status")
+            st.success(f"📍 GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
+            st.info(f"👨‍🔧 3 Technicians active in {center} area.")
+            st.warning(f"🌡️ Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
+
+        st.markdown("---")
+        if st.button("🚀 GENERATE WORK ORDER & DISPATCH", use_container_width=True):
+            with st.spinner("Synchronizing with Enterprise ERP..."):
+                time.sleep(1.5)
+                st.balloons()
+                st.markdown(f"""
+                <div class="location-card">
+                    <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
+                    <p><b>Target:</b> {address}, {center}, {gov}</p>
+                    <p><b>Task:</b> {m_type} (Priority: {priority})</p>
+                    <p><b>Assigned To:</b> {technician}</p>
+                    <p><b>Scheduled:</b> {scheduled_date}</p>
+                    <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
+                </div>
+                """, unsafe_allow_html=True)
+                
+                # Mock download button for work order
+                st.download_button("📥 Download Official Work Order (PDF)", data=b"Work Order Content", file_name=f"WorkOrder_{gov}_{center}.pdf")
+
         st.markdown('</div>', unsafe_allow_html=True)
 
 
