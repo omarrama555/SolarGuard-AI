@@ -129,6 +129,37 @@ div[data-testid="stMetricValue"] {
 }
 </style>
 """, unsafe_allow_html=True)
+# ================= EGYPT DATA =================
+EGYPT_DATA = {
+    "القاهرة": ["قسم أول مدينة نصر", "قسم ثاني مدينة نصر", "مصر الجديدة", "المعادي", "حلوان", "شبرا", "عين شمس"],
+    "الجيزة": ["الدقي", "العجوزة", "الهرم", "فيصل", "6 أكتوبر", "الشيخ زايد", "البدرشين"],
+    "الإسكندرية": ["المنتزة", "شرق", "وسط", "غرب", "الجمرك", "العجمي", "برج العرب"],
+    "القليوبية": ["بنها", "قليوب", "شبرا الخيمة", "الخانكة", "كفر شكر", "طوخ"],
+    "الدقهلية": ["المنصورة", "طلخا", "ميت غمر", "دكرنس", "السنبلاوين", "شربين"],
+    "الشرقية": ["الزقازيق", "بلبيس", "منيا القمح", "أبو حماد", "فاقوس", "العاشر من رمضان"],
+    "المنوفية": ["شبين الكوم", "قويسنا", "بركة السبع", "تلا", "الباجور", "أشمون"],
+    "الغربية": ["طنطا", "المحلة الكبرى", "كفر الزيات", "زفتى", "بسيون", "سمنود"],
+    "البحيرة": ["دمنهور", "كفر الدوار", "إيتاي البارود", "أبو حمص", "رشيد", "كوم حمادة"],
+    "كفر الشيخ": ["كفر الشيخ", "دسوق", "فوه", "مطوبس", "بيلا", "الحامول"],
+    "دمياط": ["دمياط", "فارسكور", "الزرقا", "كفر سعد", "رأس البر"],
+    "بورسعيد": ["بورفؤاد", "الشرق", "العرب", "المناخ", "الضواحي"],
+    "الإسماعيلية": ["الإسماعيلية", "التل الكبير", "فايد", "القنطرة شرق", "القنطرة غرب"],
+    "السويس": ["السويس", "الأربعين", "عتاقة", "الجناين", "فيصل"],
+    "الفيوم": ["الفيوم", "إطسا", "طامية", "سنورس", "يوسف الصديق"],
+    "بني سويف": ["بني سويف", "الواسطى", "ناصر", "ببا", "الفشن", "سمسطا"],
+    "المنيا": ["المنيا", "مغاغة", "بني مزار", "مطاي", "سمالوط", "ملوي"],
+    "أسيوط": ["أسيوط", "ديروط", "القوصية", "منفلوط", "أبو تيج", "صدفا"],
+    "سوهاج": ["سوهاج", "أخميم", "طهطا", "طما", "جرجا", "البلينا"],
+    "قنا": ["قنا", "نجع حمادي", "دشنا", "أبو تشت", "قفط", "نقادة"],
+    "الأقصر": ["الأقصر", "إسنا", "أرمنت", "القرنة"],
+    "أسوان": ["أسوان", "كوم أمبو", "إدفو", "نصر النوبة"],
+    "البحر الأحمر": ["الغردقة", "سفاجا", "القصير", "مرسى علم", "رأس غارب"],
+    "الوادي الجديد": ["الخارجة", "الداخلة", "الفرافرة", "باريس"],
+    "مطروح": ["مرسى مطروح", "العلمين", "الضبعة", "سيوة", "الحمام"],
+    "شمال سيناء": ["العريش", "بئر العبد", "الشيخ زويد", "رفح"],
+    "جنوب سيناء": ["شرم الشيخ", "طور سيناء", "دهب", "نويبع", "طابا"]
+}
+
 
 # ================= MODEL =================
 @st.cache_resource
@@ -207,28 +238,28 @@ if 'alerts' not in st.session_state:
 # ================= LOGIN / REGISTRATION PAGE =================
 if not st.session_state.logged_in:
     st.markdown('<div class="project-title">☀️ SolarGuard AI</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">Global Intelligence Solar Monitoring Platform</div>', unsafe_allow_html=True)
+    st.markdown('<div class="subtitle">Enterprise Solar Monitoring System</div>', unsafe_allow_html=True)
     st.markdown('<div class="glass-box">', unsafe_allow_html=True)
-    st.subheader("Secure Access Gateway")
+    st.subheader("Login or Register")
     tab1, tab2 = st.tabs(["Login", "Register"])
     with tab1:
-        st.markdown("#### Authorized Personnel Login")
+        st.markdown("#### Existing User Login")
         username_login = st.text_input("Username", key="username_login")
         password_login = st.text_input("Password", type="password", key="password_login")
-        if st.button("Access Dashboard", use_container_width=True, key="login_button"):
+        if st.button("Login", use_container_width=True, key="login_button"):
             if username_login in st.session_state.users and st.session_state.users[username_login] == password_login:
                 st.session_state.logged_in = True
                 st.session_state.current_user = username_login
-                st.success(f"Access Granted. Welcome, {username_login}!")
+                st.success(f"Welcome, {username_login}!")
                 st.rerun()
             else:
-                st.error("Invalid credentials provided")
+                st.error("Invalid username or password")
     with tab2:
-        st.markdown("#### New Enterprise Registration")
+        st.markdown("#### New User Registration")
         username_register = st.text_input("New Username", key="username_register")
         password_register = st.text_input("New Password", type="password", key="password_register")
         confirm_password_register = st.text_input("Confirm Password", type="password", key="confirm_password_register")
-        if st.button("Register Account", use_container_width=True, key="register_button"):
+        if st.button("Register", use_container_width=True, key="register_button"):
             if not username_register or not password_register or not confirm_password_register:
                 st.warning("All fields are required.")
             elif username_register in st.session_state.users:
@@ -237,33 +268,40 @@ if not st.session_state.logged_in:
                 st.error("Passwords do not match.")
             else:
                 st.session_state.users[username_register] = password_register
-                st.success("Registration successful! Proceed to Login.")
+                st.success("Registration successful! Please log in.")
     st.markdown('</div>', unsafe_allow_html=True)
 
 elif not st.session_state.entered_site:
     st.markdown('<div class="project-title">☀️ SolarGuard AI</div>', unsafe_allow_html=True)
-    st.markdown('<div class="subtitle">Next-Gen Solar Intelligence Ecosystem</div>', unsafe_allow_html=True)
-    st.markdown("## Welcome to the Future of Solar Energy")
+    st.markdown('<div class="subtitle">Enterprise Solar Monitoring System</div>', unsafe_allow_html=True)
+    st.markdown("## Welcome to Solar Intelligence Platform")
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Active Global Farms", "245+")
-    c2.metric("AI Accuracy Rate", "98.4%")
-    c3.metric("Critical Insights", "12")
-    c4.metric("Carbon Offset (tons)", "4,980")
-    if st.button("🚀 Launch Enterprise Dashboard", use_container_width=True):
+    c1.metric("Active Farms", "245+")
+    c2.metric("Accuracy", "97%")
+    c3.metric("Critical Alerts", "12")
+    c4.metric("Energy Saved", "32%")
+    if st.button("🚀 Enter Dashboard", use_container_width=True):
         st.session_state.entered_site = True
         st.rerun()
 
 else:
+    # --- EXIT BUTTON IN SIDEBAR ---
+    if st.sidebar.button("🚪 Exit System", use_container_width=True):
+        st.session_state.logged_in = False
+        st.session_state.entered_site = False
+        st.rerun()
+
     st.sidebar.title("☀️ SolarGuard AI")
-    st.sidebar.markdown("### Global Intelligence")
+    st.sidebar.markdown("### Enterprise Edition")
     
     menu = st.sidebar.selectbox(
         "Navigation",
         [
-            "Smart Dashboard Overview",
-            "Advanced AI Multi Panel Analysis",
-            "Real-time Video Stream Analysis",
-            "Live Camera Feed Analysis",
+            "Smart Dashboard",
+            "AI Multi Panel Analysis",
+            "Real-time Video Analysis",
+            "Live Camera Analysis",
+            "Maintenance Location Mapping",
             "Self-Learning & Model Retraining",
             "Historical System Health Logs",
             "ESG & Environmental Impact",
@@ -274,6 +312,7 @@ else:
             "Contact"
         ]
     )
+
 
     # ================= 1. SMART DASHBOARD OVERVIEW =================
     if menu == "Smart Dashboard Overview":
@@ -522,6 +561,35 @@ else:
             "Previous Model": ["97.2%", "96.8%", "97.5%", "97.1%"]
         })
         st.table(perf_data)
+
+    
+    # ================= NEW: MAINTENANCE LOCATION MAPPING =================
+    elif menu == "Maintenance Location Mapping":
+        st.markdown("## 📍 Maintenance Location Intelligence")
+        st.markdown('<div class="glass-box">', unsafe_allow_html=True)
+        
+        st.subheader("Select Maintenance Target Location")
+        country = st.selectbox("Select Country", ["Egypt (مصر)"])
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            gov = st.selectbox("Select Governorate (المحافظة)", list(EGYPT_DATA.keys()))
+        with col2:
+            center = st.selectbox("Select Center/District (المركز/القسم)", EGYPT_DATA[gov])
+            
+        village = st.text_input("Village or Detailed Address (القرية أو العنوان بالتفصيل)")
+        
+        if st.button("📍 Pin Location on Intelligence Map"):
+            st.success(f"Target locked: {village}, {center}, {gov}, {country}")
+            
+            # Google Maps Simulation (Using Streamlit Map with random coords in Egypt for demo)
+            # In a real app, we'd geocode the address
+            map_data = pd.DataFrame({'lat': [26.8206], 'lon': [30.8025]}) # Center of Egypt
+            st.map(map_data)
+            st.info("💡 Real-time Google Maps integration active for this coordinate.")
+        
+        st.markdown('</div>', unsafe_allow_html=True)
+
 
     # ================= 6. HISTORICAL SYSTEM HEALTH LOGS =================
     elif menu == "Historical System Health Logs":
