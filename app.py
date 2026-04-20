@@ -297,10 +297,10 @@ else:
     menu = st.sidebar.selectbox(
         "Navigation",
         [
-            "Smart Dashboard",
-            "AI Multi Panel Analysis",
-            "Real-time Video Analysis",
-            "Live Camera Analysis",
+           "Smart Dashboard Overview",
+            "Advanced AI Multi Panel Analysis",
+            "Real-time Video Stream Analysis",
+            "Live Camera Feed Analysis",
             "Maintenance Location Mapping",
             "Self-Learning & Model Retraining",
             "Historical System Health Logs",
