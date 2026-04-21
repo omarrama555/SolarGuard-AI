@@ -677,9 +677,9 @@ else:
             st.warning(f" Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
 
             st.markdown("---")
-if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
-    with st.spinner("Synchronizing with Enterprise ERP..."):
-        time.sleep(1.5)
+           if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
+              with st.spinner("Synchronizing with Enterprise ERP..."):
+                   time.sleep(1.5)
 
         # ☀️ Sun Animation بدل البالونات
         st.markdown("""
