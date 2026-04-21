@@ -357,15 +357,7 @@ else:
         st.markdown("### Predictive Performance Analytics")
         create_advanced_charts()
         
-        st.markdown("### Strategic KPIs")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.info("**Global ROI**: 18.5% Annualized Yield")
-        with col2:
-            st.success("**Operational Uptime**: 99.8% System Reliability")
-        with col3:
-            st.warning("**Efficiency Loss**: -0.3% Due to Environmental Factors")
-
+l
     # ================= 2. ADVANCED AI MULTI PANEL ANALYSIS =================
     elif menu == "Advanced AI Multi Panel Analysis":
         st.markdown("## Advanced AI Multi Panel Analysis")
