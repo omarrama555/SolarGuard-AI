@@ -631,29 +631,29 @@ else:
   
     # ================= NEW & IMPROVED: MAINTENANCE LOCATION MAPPING =================
     elif menu == "Maintenance Location Mapping":
-        st.markdown("## 📍 Maintenance Location Intelligence")
+        st.markdown("## Maintenance Location Intelligence")
         st.markdown('<div class="glass-box">', unsafe_allow_html=True)
         
-        st.subheader("🛠️ Fleet Dispatch & Location Manager")
+        st.subheader("Fleet Dispatch & Location Manager")
         
         col1, col2 = st.columns([1, 1])
         
         with col1:
-            st.markdown("### 🗺️ Target Selection")
+            st.markdown("### Target Selection")
             country = st.selectbox("Select Country", ["Egypt (مصر)"], disabled=True)
             gov = st.selectbox("Select Governorate (المحافظة)", list(EGYPT_DATA.keys()))
             center = st.selectbox("Select Center/District (المركز/القسم)", EGYPT_DATA[gov])
             address = st.text_input("Street Address / Landmark (العنوان أو علامة مميزة)")
             
             st.markdown("---")
-            st.markdown("### 📋 Maintenance Details")
+            st.markdown("### Maintenance Details")
             m_type = st.selectbox("Maintenance Type", ["Routine Cleaning", "Inverter Repair", "Panel Replacement", "Structural Reinforcement", "Emergency Diagnostic"])
             priority = st.select_slider("Priority Level", options=["Low", "Medium", "High", "Critical"])
             scheduled_date = st.date_input("Scheduled Visit Date", datetime.date.today() + datetime.timedelta(days=1))
             technician = st.selectbox("Assign Senior Technician", ["Eng. Ahmed Ali", "Eng. Sarah Hassan", "Eng. Mohamed Ibrahim", "Eng. Mahmoud Zayed"])
 
         with col2:
-            st.markdown("### 🌍 Real-time Intelligence Map")
+            st.markdown("###Real-time Map")
             # Get coordinates for the selected governorate
             lat, lon = GOV_COORDS.get(gov, (26.8206, 30.8025))
             
@@ -671,13 +671,13 @@ else:
             
             st.map(map_data, zoom=11)
             
-            st.markdown("### 📡 Local Intelligence Status")
-            st.success(f"📍 GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
+            st.markdown("### Local Intelligence Status")
+            st.success(f"GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
             st.info(f"👨‍🔧 3 Technicians active in {center} area.")
-            st.warning(f"🌡️ Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
+            st.warning(f" Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
 
         st.markdown("---")
-        if st.button("🚀 GENERATE WORK ORDER & DISPATCH", use_container_width=True):
+        if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
             with st.spinner("Synchronizing with Enterprise ERP..."):
                 time.sleep(1.5)
                 st.balloons()
