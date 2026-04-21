@@ -360,25 +360,30 @@ else:
 
     # ================= 2. ADVANCED AI MULTI PANEL ANALYSIS =================
 elif menu == "Advanced AI Multi Panel Analysis":
-        st.markdown("## Advanced AI Multi Panel Analysis")
-        st.markdown("**Intelligent Multi-Spectrum Defect Detection Engine**")
+    st.markdown("## Advanced AI Multi Panel Analysis")
+    st.markdown("**Intelligent Multi-Spectrum Defect Detection Engine**")
+    
+    files = st.file_uploader(
+        "Upload Batch Images (Up to 10)",
+        type=['jpg', 'png', 'jpeg'],
+        accept_multiple_files=True
+    )
+    
+    if files:
+        st.markdown("### Batch Diagnostic Intelligence")
         
-        files = st.file_uploader("Upload Batch Images (Up to 10)", type=['jpg', 'png', 'jpeg'], accept_multiple_files=True)
+        col1, col2, col3, col4, col5 = st.columns(5)
         
-if files:
-            st.markdown("### Batch Diagnostic Intelligence")
-            
-            col1, col2, col3, col4, col5 = st.columns(5)
-            with col1:
-                st.metric("Total Assets", len(files))
-            with col2:
-                st.metric("Optimal Panels", f"{random.randint(7, 10)}")
-            with col3:
-                st.metric("Anomalies Detected", f"{random.randint(0, 3)}")
-            with col4:
-                st.metric("Aggregate Health", f"{random.randint(85, 98)}%")
-            with col5:
-                st.metric("Processing Time", "1.8s")
+        with col1:
+            st.metric("Total Assets", len(files))
+        with col2:
+            st.metric("Optimal Panels", f"{random.randint(7, 10)}")
+        with col3:
+            st.metric("Anomalies Detected", f"{random.randint(0, 3)}")
+        with col4:
+            st.metric("Aggregate Health", f"{random.randint(85, 98)}%")
+        with col5:
+            st.metric("Processing Time", "1.8s")
             
             results_list = []
             cols = st.columns(min(len(files), 5))
