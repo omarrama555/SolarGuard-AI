@@ -680,7 +680,33 @@ else:
         if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
             with st.spinner("Synchronizing with Enterprise ERP..."):
                 time.sleep(1.5)
-                st.balloons()
+                st.markdown("""
+<style>
+.sun {
+    position: fixed;
+    top: -50px;
+    font-size: 20px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+</style>
+
+<div>
+""" + "".join([
+    f"<div class='sun' style='left:{i*5}%; animation-duration:{3 + (i%5)}s;'>☀️</div>"
+    for i in range(20)
+]) + "</div>
+""", unsafe_allow_html=True)
                 st.markdown(f"""
                 <div class="location-card">
                     <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
