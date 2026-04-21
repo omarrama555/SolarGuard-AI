@@ -707,21 +707,23 @@ else:
                         for i in range(25)
                     ]) + "</div>
                     """, unsafe_allow_html=True)
+                     st.markdown(f"""
+                     <div class="location-card">
+                     <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
+                     <p><b>Target:</b> {address}, {center}, {gov}</p>
+                     <p><b>Task:</b> {m_type} (Priority: {priority})</p>
+                     <p><b>Assigned To:</b> {technician}</p>
+                     <p><b>Scheduled:</b> {scheduled_date}</p>
+                     <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
+                 </div>
+                 """, unsafe_allow_html=True)
 
+                
 
             
                 
 
-                st.markdown(f"""
-                <div class="location-card">
-                    <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
-                    <p><b>Target:</b> {address}, {center}, {gov}</p>
-                    <p><b>Task:</b> {m_type} (Priority: {priority})</p>
-                    <p><b>Assigned To:</b> {technician}</p>
-                    <p><b>Scheduled:</b> {scheduled_date}</p>
-                    <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
-                </div>
-                """, unsafe_allow_html=True)
+               
                 
                 # Mock download button for work order
                 st.download_button("📥 Download Official Work Order (PDF)", data=b"Work Order Content", file_name=f"WorkOrder_{gov}_{center}.pdf")
