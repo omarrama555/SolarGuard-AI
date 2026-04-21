@@ -709,14 +709,14 @@ else:
                     """, unsafe_allow_html=True)
                      st.markdown(f"""
                      <div class="location-card">
-                     <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
-                     <p><b>Target:</b> {address}, {center}, {gov}</p>
-                     <p><b>Task:</b> {m_type} (Priority: {priority})</p>
-                     <p><b>Assigned To:</b> {technician}</p>
-                     <p><b>Scheduled:</b> {scheduled_date}</p>
-                     <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
-                 </div>
-                 """, unsafe_allow_html=True)
+                         <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
+                         <p><b>Target:</b> {address}, {center}, {gov}</p>
+                         <p><b>Task:</b> {m_type} (Priority: {priority})</p>
+                         <p><b>Assigned To:</b> {technician}</p>
+                         <p><b>Scheduled:</b> {scheduled_date}</p>
+                         <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
+                     </div>
+                     """, unsafe_allow_html=True)
 
                 
 
