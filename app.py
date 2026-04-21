@@ -705,9 +705,8 @@ else:
                     """ + "".join([
                         f"<div class='sun' style='left:{i*5}%; animation-duration:{3 + (i%5)}s;'>☀️</div>"
                         for i in range(25)
-                    ]) + "</div>
-                    """, unsafe_allow_html=True)
-                     st.markdown(f"""
+                    ]) + "</div>, unsafe_allow_html=True)
+                    st.markdown(f"""
                      <div class="location-card">
                          <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
                          <p><b>Target:</b> {address}, {center}, {gov}</p>
