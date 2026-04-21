@@ -677,23 +677,53 @@ else:
             st.warning(f" Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
 
             st.markdown("---")
-        if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
-            with st.spinner("Synchronizing with Enterprise ERP..."):
-                time.sleep(1.5)
-                st.balloons()
-                st.markdown(f"""
-                <div class="location-card">
-                    <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
-                    <p><b>Target:</b> {address}, {center}, {gov}</p>
-                    <p><b>Task:</b> {m_type} (Priority: {priority})</p>
-                    <p><b>Assigned To:</b> {technician}</p>
-                    <p><b>Scheduled:</b> {scheduled_date}</p>
-                    <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
-                </div>
-                """, unsafe_allow_html=True)
-                
+if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
+    with st.spinner("Synchronizing with Enterprise ERP..."):
+        time.sleep(1.5)
+
+        # ☀️ Sun Animation بدل البالونات
+        st.markdown("""
+        <style>
+        .sun {
+            position: fixed;
+            top: -50px;
+            font-size: 18px;
+            animation: fall linear infinite;
+            z-index: 9999;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        </style>
+
+        <div>
+        """ + "".join([
+            f"<div class='sun' style='left:{i*5}%; animation-duration:{3 + (i%5)}s;'>☀️</div>"
+            for i in range(25)
+        ]) + "</div>
+        """, unsafe_allow_html=True)
+
+        st.markdown(f"""
+        <div class="location-card">
+            <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
+            <p><b>Target:</b> {address}, {center}, {gov}</p>
+            <p><b>Task:</b> {m_type} (Priority: {priority})</p>
+            <p><b>Assigned To:</b> {technician}</p>
+            <p><b>Scheduled:</b> {scheduled_date}</p>
+            <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
+        </div>
+        """, unsafe_allow_html=True)
 
         
+                
                 
 
                 st.markdown(f"""
