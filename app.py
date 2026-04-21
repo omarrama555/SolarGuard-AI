@@ -738,7 +738,7 @@ elif menu == "Maintenance Location Mapping":
                     file_name=f"WorkOrder_{gov}_{center}.pdf"
                 )
 
-    st.markdown('</div>', unsafe_allow_html=True)
+               st.markdown('</div>', unsafe_allow_html=True)
   
     
  
