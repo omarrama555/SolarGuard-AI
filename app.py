@@ -319,7 +319,7 @@ elif not st.session_state.entered_site:
 
 else:
     # --- EXIT BUTTON IN SIDEBAR ---
-    if st.sidebar.button("🚪 Exit System", use_container_width=True):
+    if st.sidebar.button(" Exit System", use_container_width=True):
         st.session_state.logged_in = False
         st.session_state.entered_site = False
         st.rerun()
@@ -349,22 +349,16 @@ else:
 
     # ================= 1. SMART DASHBOARD OVERVIEW =================
     if menu == "Smart Dashboard Overview":
-        st.markdown("## 📊 Global Operations Dashboard")
+        st.markdown("##  Global Operations Dashboard")
         st.markdown("**Enterprise-Grade Intelligence & Performance Metrics**")
         
         create_business_dashboard()
         
-        st.markdown("### 📈 Predictive Performance Analytics")
+        st.markdown("###  Predictive Performance Analytics")
         create_advanced_charts()
         
-        st.markdown("### 🎯 Strategic KPIs")
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.info("**Global ROI**: 18.5% Annualized Yield")
-        with col2:
-            st.success("**Operational Uptime**: 99.8% System Reliability")
-        with col3:
-            st.warning("**Efficiency Loss**: -0.3% Due to Environmental Factors")
+        
+    
 
     # ================= 2. ADVANCED AI MULTI PANEL ANALYSIS =================
     elif menu == "Advanced AI Multi Panel Analysis":
