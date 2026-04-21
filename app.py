@@ -680,27 +680,24 @@ else:
             if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
                 with st.spinner("Synchronizing with Enterprise ERP..."):
                     time.sleep(1.5)
-                     st.markdown("""
-                     <style>
-                     .sun {
-                         position: fixed;
-                         top: -50px;
-                         font-size: 18px;
-                         animation: fall linear infinite;
-                         z-index: 9999;
-                     }
-            
-           
-
+                    st.markdown("""
+                    <style>
+                    .sun {
+                        position: fixed;
+                        top: -50px;
+                        font-size: 18px;
+                        animation: fall linear infinite;
+                        z-index: 9999;
+                    }
                     @keyframes fall {
                         0% {
                             transform: translateY(0);
                             opacity: 1;
-                       }
-                       100% {
-                             transform: translateY(100vh);
-                             opacity: 0;
-                       }
+                        }
+                        100% {
+                            transform: translateY(100vh);
+                            opacity: 0;
+                        }
                     }
                     </style>
 
