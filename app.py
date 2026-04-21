@@ -357,7 +357,7 @@ else:
         st.markdown("### Predictive Performance Analytics")
         create_advanced_charts()
         
-l
+
     # ================= 2. ADVANCED AI MULTI PANEL ANALYSIS =================
 elif menu == "Advanced AI Multi Panel Analysis":
         st.markdown("## Advanced AI Multi Panel Analysis")
@@ -365,7 +365,7 @@ elif menu == "Advanced AI Multi Panel Analysis":
         
         files = st.file_uploader("Upload Batch Images (Up to 10)", type=['jpg', 'png', 'jpeg'], accept_multiple_files=True)
         
-        if files:
+if files:
             st.markdown("### Batch Diagnostic Intelligence")
             
             col1, col2, col3, col4, col5 = st.columns(5)
