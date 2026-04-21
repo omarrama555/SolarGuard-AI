@@ -36,7 +36,7 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 
 [data-testid="stAppViewContainer"]{
-    background-image: linear-gradient(rgba(7, 18, 30, 0.8), rgba(7, 18, 30, 0.8)), url("https://solar.com.ng/wp-content/uploads/2024/06/What-Factors-to-Consider-When-Choosing-Solar-Panels-in-Nigeria-750x375.webp");
+    background-image: linear-gradient(rgba(7, 18, 30, 0.4), rgba(7, 18, 30, 0.4)), url("https://solar.com.ng/wp-content/uploads/2024/06/What-Factors-to-Consider-When-Choosing-Solar-Panels-in-Nigeria-750x375.webp");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
