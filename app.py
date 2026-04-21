@@ -36,7 +36,7 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 
 [data-testid="stAppViewContainer"]{
-    background-image: linear-gradient(rgba(7, 18, 30, 0.2), rgba(7, 18, 30, 0.2)), url("https://solar.com.ng/wp-content/uploads/2024/06/What-Factors-to-Consider-When-Choosing-Solar-Panels-in-Nigeria-750x375.webp");
+    background-image: linear-gradient(rgba(7, 18, 30, 0.8), rgba(7, 18, 30, 0.8)), url("https://solar.com.ng/wp-content/uploads/2024/06/What-Factors-to-Consider-When-Choosing-Solar-Panels-in-Nigeria-750x375.webp");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -319,7 +319,7 @@ elif not st.session_state.entered_site:
 
 else:
     # --- EXIT BUTTON IN SIDEBAR ---
-    if st.sidebar.button(" Exit System", use_container_width=True):
+    if st.sidebar.button("🚪 Exit System", use_container_width=True):
         st.session_state.logged_in = False
         st.session_state.entered_site = False
         st.rerun()
@@ -349,26 +349,32 @@ else:
 
     # ================= 1. SMART DASHBOARD OVERVIEW =================
     if menu == "Smart Dashboard Overview":
-        st.markdown("##  Global Operations Dashboard")
+        st.markdown("## 📊 Global Operations Dashboard")
         st.markdown("**Enterprise-Grade Intelligence & Performance Metrics**")
         
         create_business_dashboard()
         
-        st.markdown("###  Predictive Performance Analytics")
+        st.markdown("### 📈 Predictive Performance Analytics")
         create_advanced_charts()
         
-        
-    
+        st.markdown("### 🎯 Strategic KPIs")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.info("**Global ROI**: 18.5% Annualized Yield")
+        with col2:
+            st.success("**Operational Uptime**: 99.8% System Reliability")
+        with col3:
+            st.warning("**Efficiency Loss**: -0.3% Due to Environmental Factors")
 
     # ================= 2. ADVANCED AI MULTI PANEL ANALYSIS =================
     elif menu == "Advanced AI Multi Panel Analysis":
-        st.markdown("##  Advanced AI Multi Panel Analysis")
+        st.markdown("## 🤖 Advanced AI Multi Panel Analysis")
         st.markdown("**Intelligent Multi-Spectrum Defect Detection Engine**")
         
         files = st.file_uploader("Upload Batch Images (Up to 10)", type=['jpg', 'png', 'jpeg'], accept_multiple_files=True)
         
         if files:
-            st.markdown("###  Batch Diagnostic Intelligence")
+            st.markdown("### 📊 Batch Diagnostic Intelligence")
             
             col1, col2, col3, col4, col5 = st.columns(5)
             with col1:
@@ -419,12 +425,12 @@ else:
                     "Risk Profile": "Low" if score > 85 else "Elevated" if score > 70 else "Critical"
                 })
             
-            st.markdown("###  Granular Asset Analysis")
+            st.markdown("### 🎯 Granular Asset Analysis")
             df = pd.DataFrame(results_list).sort_values(by="Health Score %", ascending=False)
             st.dataframe(df, use_container_width=True)
             
             # Communication Channels
-            st.markdown("###  Enterprise Communication Gateway")
+            st.markdown("### 📡 Enterprise Communication Gateway")
             comm_col1, comm_col2 = st.columns(2)
             with comm_col1:
                 whatsapp_num = st.text_input("Recipient WhatsApp Number", placeholder="+201080520164")
@@ -443,10 +449,10 @@ else:
                         st.error("Please enter a valid destination email")
 
             # New Features
-            st.markdown("###  Intelligent Extensions")
+            st.markdown("### 🚀 Intelligent Extensions")
             ext_col1, ext_col2 = st.columns(2)
             with ext_col1:
-                st.markdown("#### Micro-Defect Zoom")
+                st.markdown("#### 🔍 Micro-Defect Zoom")
                 st.info("AI-powered 4x zoom on detected anomalies for structural verification.")
                 if st.button("Activate Neural Zoom"):
                     st.success("✅ Neural Zoom Analysis completed on detected anomalies.")
@@ -468,7 +474,7 @@ else:
             with open(tfile, "wb") as f:
                 f.write(uploaded_video.getbuffer())
             
-            st.info("Initiating Full Video Analysis (Second-by-Second)...")
+            st.info("🎥 Initiating Full Video Analysis (Second-by-Second)...")
             cap = cv2.VideoCapture(tfile)
             total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
             fps = cap.get(cv2.CAP_PROP_FPS)
@@ -555,21 +561,21 @@ else:
                 if st.button("Generate Progression Report"):
                     st.success("✅ Analysis: Defect size stable. No rapid expansion detected.")
                 
-                st.markdown("#### 2.  Dynamic Power Loss Estimator")
+                st.markdown("#### 2. ⚡ Dynamic Power Loss Estimator")
                 st.info("Calculates exact energy loss (kWh) for each second of the video based on obstruction percentage.")
                 if st.button("Calculate Dynamic Loss"):
                     st.metric("Total Loss Estimated", "0.45 kWh", "Critical")
 
-                st.markdown("#### 3.  Asset Integrity Certification")
+                st.markdown("#### 3. 🛡️ Asset Integrity Certification")
                 st.info("Generates a signed digital certificate verifying the visual health of the assets during the video period.")
                 if st.button("Issue Health Certificate"):
-                    st.success(" Certificate SG-2026-X1 generated and ready for download.")
+                    st.success("📜 Certificate SG-2026-X1 generated and ready for download.")
 
             with feat_col2:
                 st.markdown("#### 4. 🌡️ Visual Thermal Anomaly Mapping")
                 st.info("Simulates thermal hotspots by analyzing pixel intensity changes, identifying potential electrical failures.")
                 if st.button("Run Thermal Simulation"):
-                    st.warning(" 2 potential hotspots identified in Frame 145 & 210.")
+                    st.warning("⚠️ 2 potential hotspots identified in Frame 145 & 210.")
 
                 st.markdown("#### 5. 🤖 Automated Maintenance Dispatch")
                 st.info("Directly connects to the ERP system to schedule a technician if health drops below 70% in any frame.")
@@ -583,7 +589,7 @@ else:
         st.markdown("**Real-time Continuous Asset Monitoring**")
         
         if WEBRTC_AVAILABLE:
-            st.info(" Establishing secure uplink to camera feed...")
+            st.info("📡 Establishing secure uplink to camera feed...")
             # Enhanced WebRTC configuration could go here
             webrtc_streamer(
                 key="live_camera",
@@ -591,10 +597,10 @@ else:
                 rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]}
             )
             
-            st.markdown("###  Live Stream Enhancements")
+            st.markdown("### 🛠️ Live Stream Enhancements")
             ls_col1, ls_col2 = st.columns(2)
             with ls_col1:
-                st.markdown("####  Low-Latency Edge Processing")
+                st.markdown("#### 🛰️ Low-Latency Edge Processing")
                 st.info("Reduces lag by processing frames at the network edge.")
                 st.toggle("Enable Edge Acceleration", value=True)
             with ls_col2:
@@ -618,7 +624,7 @@ else:
             if st.button("Commit to Neural Training Set"):
                 st.success(f"✅ Asset data committed. Model will be updated in the next cycle.")
         
-        st.markdown("###  Neural Performance Metrics")
+        st.markdown("### 📈 Neural Performance Metrics")
         perf_data = pd.DataFrame({
             "Metric": ["Accuracy", "Precision", "Recall", "F1-Score"],
             "Current Model": ["98.4%", "97.8%", "98.1%", "97.9%"],
@@ -628,97 +634,59 @@ else:
 
     
     # ================= NEW: MAINTENANCE LOCATION MAPPING =================
+  
     # ================= NEW & IMPROVED: MAINTENANCE LOCATION MAPPING =================
-elif menu == "Maintenance Location Mapping":
-    st.markdown("## Maintenance Location Intelligence")
-    st.markdown('<div class="glass-box">', unsafe_allow_html=True)
-    
-    st.subheader("Fleet Dispatch & Location Manager")
-    
-    col1, col2 = st.columns([1, 1])
-    
-    with col1:
-        st.markdown("### Target Selection")
-        country = st.selectbox("Select Country", ["Egypt (مصر)"], disabled=True)
-        gov = st.selectbox("Select Governorate (المحافظة)", list(EGYPT_DATA.keys()))
-        center = st.selectbox("Select Center/District (المركز/القسم)", EGYPT_DATA[gov])
-        address = st.text_input("Street Address / Landmark (العنوان أو علامة مميزة)")
+    elif menu == "Maintenance Location Mapping":
+        st.markdown("## 📍 Maintenance Location Intelligence")
+        st.markdown('<div class="glass-box">', unsafe_allow_html=True)
         
-        st.markdown("---")
-        st.markdown("### Maintenance Details")
-        m_type = st.selectbox(
-            "Maintenance Type",
-            ["Routine Cleaning", "Inverter Repair", "Panel Replacement", "Structural Reinforcement", "Emergency Diagnostic"]
-        )
-        priority = st.select_slider("Priority Level", options=["Low", "Medium", "High", "Critical"])
-        scheduled_date = st.date_input(
-            "Scheduled Visit Date",
-            datetime.date.today() + datetime.timedelta(days=1)
-        )
-        technician = st.selectbox(
-            "Assign Senior Technician",
-            ["Eng. Ahmed Ali", "Eng. Sarah Hassan", "Eng. Mohamed Ibrahim", "Eng. Mahmoud Zayed"]
-        )
+        st.subheader("🛠️ Fleet Dispatch & Location Manager")
+        
+        col1, col2 = st.columns([1, 1])
+        
+        with col1:
+            st.markdown("### 🗺️ Target Selection")
+            country = st.selectbox("Select Country", ["Egypt (مصر)"], disabled=True)
+            gov = st.selectbox("Select Governorate (المحافظة)", list(EGYPT_DATA.keys()))
+            center = st.selectbox("Select Center/District (المركز/القسم)", EGYPT_DATA[gov])
+            address = st.text_input("Street Address / Landmark (العنوان أو علامة مميزة)")
+            
+            st.markdown("---")
+            st.markdown("### 📋 Maintenance Details")
+            m_type = st.selectbox("Maintenance Type", ["Routine Cleaning", "Inverter Repair", "Panel Replacement", "Structural Reinforcement", "Emergency Diagnostic"])
+            priority = st.select_slider("Priority Level", options=["Low", "Medium", "High", "Critical"])
+            scheduled_date = st.date_input("Scheduled Visit Date", datetime.date.today() + datetime.timedelta(days=1))
+            technician = st.selectbox("Assign Senior Technician", ["Eng. Ahmed Ali", "Eng. Sarah Hassan", "Eng. Mohamed Ibrahim", "Eng. Mahmoud Zayed"])
 
-    with col2:
-        st.markdown("### Real-time Map")
-        
-        lat, lon = GOV_COORDS.get(gov, (26.8206, 30.8025))
-        
-        c_lat = lat + random.uniform(-0.05, 0.05)
-        c_lon = lon + random.uniform(-0.05, 0.05)
-        
-        map_data = pd.DataFrame({
-            'lat': [c_lat, c_lat + 0.02, c_lat - 0.02, c_lat + 0.01],
-            'lon': [c_lon, c_lon + 0.01, c_lon - 0.01, c_lon + 0.03],
-            'name': ['Target Site', 'Tech Unit 1', 'Tech Unit 2', 'Tech Unit 3'],
-            'color': ['#FF0000', '#00FF00', '#00FF00', '#00FF00']
-        })
-        
-        st.map(map_data, zoom=11)
-        
-        st.markdown("### Local Intelligence Status")
-        st.success(f"GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
-        st.info(f"👨‍🔧 3 Technicians active in {center} area.")
-        st.warning(f" Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
+        with col2:
+            st.markdown("### 🌍 Real-time Intelligence Map")
+            # Get coordinates for the selected governorate
+            lat, lon = GOV_COORDS.get(gov, (26.8206, 30.8025))
+            
+            # Simulate random coordinates for the specific center/district
+            c_lat = lat + random.uniform(-0.05, 0.05)
+            c_lon = lon + random.uniform(-0.05, 0.05)
+            
+            # Create a dataframe for the map with multiple points (Target + Available Technicians)
+            map_data = pd.DataFrame({
+                'lat': [c_lat, c_lat + 0.02, c_lat - 0.02, c_lat + 0.01],
+                'lon': [c_lon, c_lon + 0.01, c_lon - 0.01, c_lon + 0.03],
+                'name': ['Target Site', 'Tech Unit 1', 'Tech Unit 2', 'Tech Unit 3'],
+                'color': ['#FF0000', '#00FF00', '#00FF00', '#00FF00']
+            })
+            
+            st.map(map_data, zoom=11)
+            
+            st.markdown("### 📡 Local Intelligence Status")
+            st.success(f"📍 GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
+            st.info(f"👨‍🔧 3 Technicians active in {center} area.")
+            st.warning(f"🌡️ Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
 
         st.markdown("---")
-        if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
+        if st.button("🚀 GENERATE WORK ORDER & DISPATCH", use_container_width=True):
             with st.spinner("Synchronizing with Enterprise ERP..."):
                 time.sleep(1.5)
-
-                st.markdown(
-                    """
-                    <style>
-                    .sun {
-                        position: fixed;
-                        top: -50px;
-                        font-size: 18px;
-                        animation: fall linear infinite;
-                        z-index: 9999;
-                    }
-                    @keyframes fall {
-                        0% {
-                            transform: translateY(0);
-                            opacity: 1;
-                        }
-                        100% {
-                            transform: translateY(100vh);
-                            opacity: 0;
-                        }
-                    }
-                    </style>
-
-                    <div>
-                    """
-                    + "".join([
-                        f"<div class='sun' style='left:{i*5}%; animation-duration:{3 + (i%5)}s;'>☀️</div>"
-                        for i in range(25)
-                    ]) +
-                    "</div>",
-                    unsafe_allow_html=True
-                )
-
+                st.balloons()
                 st.markdown(f"""
                 <div class="location-card">
                     <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
@@ -726,21 +694,14 @@ elif menu == "Maintenance Location Mapping":
                     <p><b>Task:</b> {m_type} (Priority: {priority})</p>
                     <p><b>Assigned To:</b> {technician}</p>
                     <p><b>Scheduled:</b> {scheduled_date}</p>
-                    <p style='font-size: 0.8em; color: gray;'>
-                        Intelligence report and GPS coordinates transmitted to technician's mobile terminal.
-                    </p>
+                    <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
                 </div>
                 """, unsafe_allow_html=True)
+                
+                # Mock download button for work order
+                st.download_button("📥 Download Official Work Order (PDF)", data=b"Work Order Content", file_name=f"WorkOrder_{gov}_{center}.pdf")
 
-                st.download_button(
-                    "📥 Download Official Work Order (PDF)",
-                    data=b"Work Order Content",
-                    file_name=f"WorkOrder_{gov}_{center}.pdf"
-                )
-
-               st.markdown('</div>', unsafe_allow_html=True)
-  
-    
+        st.markdown('</div>', unsafe_allow_html=True)
  
 
     # ================= 6. HISTORICAL SYSTEM HEALTH LOGS =================
