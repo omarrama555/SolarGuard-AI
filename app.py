@@ -302,7 +302,7 @@ if not st.session_state.logged_in:
             else:
                 st.session_state.users[username_register] = password_register
                 st.success("Registration successful! Please log in.")
-    st.markdown('</div>', unsafe_allow_html=True)
+                st.markdown('</div>', unsafe_allow_html=True)
 
 elif not st.session_state.entered_site:
     st.markdown('<div class="project-title">☀️ SolarGuard AI</div>', unsafe_allow_html=True)
