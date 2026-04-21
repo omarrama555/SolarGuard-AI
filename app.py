@@ -36,7 +36,7 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 
 [data-testid="stAppViewContainer"]{
-    background-image: linear-gradient(rgba(7, 18, 30, 0.8), rgba(7, 18, 30, 0.8)), url("https://solar.com.ng/wp-content/uploads/2024/06/What-Factors-to-Consider-When-Choosing-Solar-Panels-in-Nigeria-750x375.webp");
+    background-image: linear-gradient(rgba(7, 18, 30, 0.2), rgba(7, 18, 30, 0.2)), url("https://solar.com.ng/wp-content/uploads/2024/06/What-Factors-to-Consider-When-Choosing-Solar-Panels-in-Nigeria-750x375.webp");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -686,7 +686,6 @@ else:
         if st.button("🚀 GENERATE WORK ORDER & DISPATCH", use_container_width=True):
             with st.spinner("Synchronizing with Enterprise ERP..."):
                 time.sleep(1.5)
-                st.balloons()
                 st.markdown(f"""
                 <div class="location-card">
                     <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
