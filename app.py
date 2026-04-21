@@ -359,7 +359,7 @@ else:
         
 l
     # ================= 2. ADVANCED AI MULTI PANEL ANALYSIS =================
-    elif menu == "Advanced AI Multi Panel Analysis":
+elif menu == "Advanced AI Multi Panel Analysis":
         st.markdown("## Advanced AI Multi Panel Analysis")
         st.markdown("**Intelligent Multi-Spectrum Defect Detection Engine**")
         
