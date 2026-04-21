@@ -628,59 +628,67 @@ else:
 
     
     # ================= NEW: MAINTENANCE LOCATION MAPPING =================
-  
     # ================= NEW & IMPROVED: MAINTENANCE LOCATION MAPPING =================
-    elif menu == "Maintenance Location Mapping":
-        st.markdown("## Maintenance Location Intelligence")
-        st.markdown('<div class="glass-box">', unsafe_allow_html=True)
+elif menu == "Maintenance Location Mapping":
+    st.markdown("## Maintenance Location Intelligence")
+    st.markdown('<div class="glass-box">', unsafe_allow_html=True)
+    
+    st.subheader("Fleet Dispatch & Location Manager")
+    
+    col1, col2 = st.columns([1, 1])
+    
+    with col1:
+        st.markdown("### Target Selection")
+        country = st.selectbox("Select Country", ["Egypt (مصر)"], disabled=True)
+        gov = st.selectbox("Select Governorate (المحافظة)", list(EGYPT_DATA.keys()))
+        center = st.selectbox("Select Center/District (المركز/القسم)", EGYPT_DATA[gov])
+        address = st.text_input("Street Address / Landmark (العنوان أو علامة مميزة)")
         
-        st.subheader("Fleet Dispatch & Location Manager")
-        
-        col1, col2 = st.columns([1, 1])
-        
-        with col1:
-            st.markdown("### Target Selection")
-            country = st.selectbox("Select Country", ["Egypt (مصر)"], disabled=True)
-            gov = st.selectbox("Select Governorate (المحافظة)", list(EGYPT_DATA.keys()))
-            center = st.selectbox("Select Center/District (المركز/القسم)", EGYPT_DATA[gov])
-            address = st.text_input("Street Address / Landmark (العنوان أو علامة مميزة)")
-            
-            st.markdown("---")
-            st.markdown("### Maintenance Details")
-            m_type = st.selectbox("Maintenance Type", ["Routine Cleaning", "Inverter Repair", "Panel Replacement", "Structural Reinforcement", "Emergency Diagnostic"])
-            priority = st.select_slider("Priority Level", options=["Low", "Medium", "High", "Critical"])
-            scheduled_date = st.date_input("Scheduled Visit Date", datetime.date.today() + datetime.timedelta(days=1))
-            technician = st.selectbox("Assign Senior Technician", ["Eng. Ahmed Ali", "Eng. Sarah Hassan", "Eng. Mohamed Ibrahim", "Eng. Mahmoud Zayed"])
+        st.markdown("---")
+        st.markdown("### Maintenance Details")
+        m_type = st.selectbox(
+            "Maintenance Type",
+            ["Routine Cleaning", "Inverter Repair", "Panel Replacement", "Structural Reinforcement", "Emergency Diagnostic"]
+        )
+        priority = st.select_slider("Priority Level", options=["Low", "Medium", "High", "Critical"])
+        scheduled_date = st.date_input(
+            "Scheduled Visit Date",
+            datetime.date.today() + datetime.timedelta(days=1)
+        )
+        technician = st.selectbox(
+            "Assign Senior Technician",
+            ["Eng. Ahmed Ali", "Eng. Sarah Hassan", "Eng. Mohamed Ibrahim", "Eng. Mahmoud Zayed"]
+        )
 
-        with col2:
-            st.markdown("### Real-time Map")
-            # Get coordinates for the selected governorate
-            lat, lon = GOV_COORDS.get(gov, (26.8206, 30.8025))
-            
-            # Simulate random coordinates for the specific center/district
-            c_lat = lat + random.uniform(-0.05, 0.05)
-            c_lon = lon + random.uniform(-0.05, 0.05)
-            
-            # Create a dataframe for the map with multiple points (Target + Available Technicians)
-            map_data = pd.DataFrame({
-                'lat': [c_lat, c_lat + 0.02, c_lat - 0.02, c_lat + 0.01],
-                'lon': [c_lon, c_lon + 0.01, c_lon - 0.01, c_lon + 0.03],
-                'name': ['Target Site', 'Tech Unit 1', 'Tech Unit 2', 'Tech Unit 3'],
-                'color': ['#FF0000', '#00FF00', '#00FF00', '#00FF00']
-            })
-            
-            st.map(map_data, zoom=11)
-            
-            st.markdown("### Local Intelligence Status")
-            st.success(f"GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
-            st.info(f"👨‍🔧 3 Technicians active in {center} area.")
-            st.warning(f" Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
+    with col2:
+        st.markdown("### Real-time Map")
+        
+        lat, lon = GOV_COORDS.get(gov, (26.8206, 30.8025))
+        
+        c_lat = lat + random.uniform(-0.05, 0.05)
+        c_lon = lon + random.uniform(-0.05, 0.05)
+        
+        map_data = pd.DataFrame({
+            'lat': [c_lat, c_lat + 0.02, c_lat - 0.02, c_lat + 0.01],
+            'lon': [c_lon, c_lon + 0.01, c_lon - 0.01, c_lon + 0.03],
+            'name': ['Target Site', 'Tech Unit 1', 'Tech Unit 2', 'Tech Unit 3'],
+            'color': ['#FF0000', '#00FF00', '#00FF00', '#00FF00']
+        })
+        
+        st.map(map_data, zoom=11)
+        
+        st.markdown("### Local Intelligence Status")
+        st.success(f"GPS Lock: {c_lat:.4f}, {c_lon:.4f}")
+        st.info(f"👨‍🔧 3 Technicians active in {center} area.")
+        st.warning(f" Current Local Temp: {random.randint(28, 42)}°C - Plan for heat safety.")
 
-            st.markdown("---")
-            if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
-                with st.spinner("Synchronizing with Enterprise ERP..."):
-                    time.sleep(1.5)
-                    st.markdown("""
+        st.markdown("---")
+        if st.button("🚀GENERATE WORK ORDER & DISPATCH", use_container_width=True):
+            with st.spinner("Synchronizing with Enterprise ERP..."):
+                time.sleep(1.5)
+
+                st.markdown(
+                    """
                     <style>
                     .sun {
                         position: fixed;
@@ -702,32 +710,37 @@ else:
                     </style>
 
                     <div>
-                    """ + "".join([
+                    """
+                    + "".join([
                         f"<div class='sun' style='left:{i*5}%; animation-duration:{3 + (i%5)}s;'>☀️</div>"
                         for i in range(25)
-                    ]) + "</div>, unsafe_allow_html=True)
-                    st.markdown(f"""
-                     <div class="location-card">
-                         <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
-                         <p><b>Target:</b> {address}, {center}, {gov}</p>
-                         <p><b>Task:</b> {m_type} (Priority: {priority})</p>
-                         <p><b>Assigned To:</b> {technician}</p>
-                         <p><b>Scheduled:</b> {scheduled_date}</p>
-                         <p style='font-size: 0.8em; color: gray;'>Intelligence report and GPS coordinates transmitted to technician's mobile terminal.</p>
-                     </div>
-                     """, unsafe_allow_html=True)
+                    ]) +
+                    "</div>",
+                    unsafe_allow_html=True
+                )
 
-                
+                st.markdown(f"""
+                <div class="location-card">
+                    <h3 style='color:#FF8C00;'>✅ Work Order #SG-2026-{random.randint(1000, 9999)} Created</h3>
+                    <p><b>Target:</b> {address}, {center}, {gov}</p>
+                    <p><b>Task:</b> {m_type} (Priority: {priority})</p>
+                    <p><b>Assigned To:</b> {technician}</p>
+                    <p><b>Scheduled:</b> {scheduled_date}</p>
+                    <p style='font-size: 0.8em; color: gray;'>
+                        Intelligence report and GPS coordinates transmitted to technician's mobile terminal.
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
 
-            
-                
+                st.download_button(
+                    "📥 Download Official Work Order (PDF)",
+                    data=b"Work Order Content",
+                    file_name=f"WorkOrder_{gov}_{center}.pdf"
+                )
 
-               
-                
-                # Mock download button for work order
-                st.download_button("📥 Download Official Work Order (PDF)", data=b"Work Order Content", file_name=f"WorkOrder_{gov}_{center}.pdf")
-
-        st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
+  
+    
  
 
     # ================= 6. HISTORICAL SYSTEM HEALTH LOGS =================
